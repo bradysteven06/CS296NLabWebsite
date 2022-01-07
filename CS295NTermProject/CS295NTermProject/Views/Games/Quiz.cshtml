@@ -1,0 +1,20 @@
+﻿@model QuizModel
+
+@{
+}
+
+
+<h1>@ViewBag.QuestionText</h1>
+
+<form asp-action="Quiz" method="post">
+    <input type="hidden" asp-for="NumCorrect" value="@ViewBag.numCorrect" />
+    <input type="hidden" asp-for="NumWrong" value="@ViewBag.numWrong" />
+    <input type="hidden" asp-for="QuestionID" value="@ViewBag.qid" />
+
+    <input type="radio" asp-for="UAnswer" value="@ViewBag.Option1" />@ViewBag.Option1<br />
+    <input type="radio" asp-for="UAnswer" value="@ViewBag.Option2" />@ViewBag.Option2<br />
+    <input type="radio" asp-for="UAnswer" value="@ViewBag.Option3" />@ViewBag.Option3<br />
+    <input type="radio" asp-for="UAnswer" value="@ViewBag.Option4" />@ViewBag.Option4<br />
+
+    <button type="submit">Submit</button>
+</form>

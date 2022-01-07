@@ -1,0 +1,30 @@
+﻿@model GameInfoModel
+
+@{
+}
+
+<h1 class="text-center">Search Results</h1>
+
+<div class="border border-dark">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="mr-5">Game Name</th>
+                <th class="mr-5">Game Release Date</th>
+                <th>Game Platform</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var game in ViewBag.gameList)
+            {
+                <tr>
+                    <td class="background-green">@game.Name</td>
+                    <td>@game.ReleaseDate</td>
+                    <td>@game.Platform</td>
+                    <td><a asp-controller="WantToPlay" asp-action="Edit" asp-route-id="@game.GameID">Edit</a></td>
+                    <td><a asp-controller="WantToPlay" asp-action="Remove" asp-route-id="@game.GameID">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
