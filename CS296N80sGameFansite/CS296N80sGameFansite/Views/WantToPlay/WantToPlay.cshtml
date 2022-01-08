@@ -1,0 +1,39 @@
+﻿@model List<GameInfoModel>
+
+@{
+}
+
+<h1 class="text-center">Want To Play</h1>
+
+@*finish search functionality later*@
+@*<form asp-action="Search" method="post">
+    <label asp-for="Name">Name:</label><input asp-for="Name" />
+    <button type="submit">Search</button>
+</form>*@
+
+<a class="btn-outline-primary" asp-controller="WantToPlay" asp-action="Edit" asp-route-id="0">Add New Game</a>
+<br />
+
+<div class="border border-dark">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="mr-5">Game Name</th>
+                <th class="mr-5">Game Year</th>
+                <th>Game Platform</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var game in Model)
+            {
+                <tr>
+                    <td class="background-green">@game.Name</td>
+                    <td>@game.Year</td>
+                    <td>@game.Platform</td>
+                    <td><a asp-controller="WantToPlay" asp-action="Edit" asp-route-id="@game.GameID">Edit</a></td>
+                    <td><a asp-controller="WantToPlay" asp-action="Remove" asp-route-id="@game.GameID">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,15 @@
+﻿@model GameInfoModel
+
+@{
+    ViewBag.Title = "Delete Game";
+}
+
+<h2>Confirm Deletion</h2>
+<h3>@Model.Name (@Model.Year)</h3>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="GameID" />
+
+    <button type="submit" class="btn btn-primary">Delete</button>
+    <a asp-controller="WantToPlay" asp-action="WantToPlay" class="btn btn-primary">Cancel</a>
+</form>
