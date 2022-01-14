@@ -10,13 +10,6 @@ namespace CS296N80sGameFansite.Controllers
 {
     public class WantToPlayController : Controller
     {
-        /*private WantToPlayContext context { get; set; }
-
-        public WantToPlayController(WantToPlayContext ctx)
-        {
-            context = ctx;
-        }*/
-
         IWantToPlayRepository repo;
 
         public WantToPlayController(IWantToPlayRepository r)
@@ -27,9 +20,6 @@ namespace CS296N80sGameFansite.Controllers
         [HttpGet]
         public IActionResult WantToPlay()
         {
-            //ViewBag.gameList = context.GameInfo.ToList();
-            /*var gameList = context.GameInfo.OrderBy(m => m.Name).ToList();
-            return View(gameList);*/
             var gameList = repo.Games.OrderBy(m => m.Name).ToList();
             return View(gameList);
         }
@@ -37,8 +27,6 @@ namespace CS296N80sGameFansite.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            /*ViewBag.Action = "Add";
-            return View("Edit", new GameInfoModel());*/
             ViewBag.Action = "Add";
             var game = new GameInfoModel();
             return View(game);
@@ -62,9 +50,6 @@ namespace CS296N80sGameFansite.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            /*ViewBag.Action = "Edit";
-            var game = context.GameInfo.Find(id);
-            return View(game);*/
             ViewBag.Action = "Edit";
             var game = repo.GetGameByID(id);
             return View(game);
@@ -73,25 +58,6 @@ namespace CS296N80sGameFansite.Controllers
         [HttpPost]
         public IActionResult Edit(GameInfoModel game)
         {
-            /*if (ModelState.IsValid)
-            {
-                if (game.GameID == 0)
-                {
-                    context.GameInfo.Add(game);
-                }
-                else
-                {
-                    context.GameInfo.Update(game);
-                }
-                context.SaveChanges();
-                return RedirectToAction("WantToPlay", "WantToPlay");
-            }
-            else
-            {
-                // if GameId is 0 "Add" else "Edit"
-                ViewBag.Action = (game.GameID == 0) ? "Add" : "Edit";
-                return View(game);
-            }*/
             if (ModelState.IsValid)
             {
                 repo.EditGame(game);
@@ -107,8 +73,6 @@ namespace CS296N80sGameFansite.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            /*var game = context.GameInfo.Find(id);
-            return View(game);*/
             var game = repo.GetGameByID(id);
             return View(game);
         }
@@ -116,9 +80,6 @@ namespace CS296N80sGameFansite.Controllers
         [HttpPost]
         public IActionResult Delete(GameInfoModel game)
         {
-            /*context.GameInfo.Remove(game);
-            context.SaveChanges();
-            return RedirectToAction("WantToPlay", "WantToPlay");*/
             repo.DeleteGame(game);
             return RedirectToAction("WantToPlay", "WantToPlay");
         }
