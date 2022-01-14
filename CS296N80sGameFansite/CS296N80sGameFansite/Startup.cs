@@ -37,6 +37,7 @@ namespace CS296N80sGameFansite
 
             // enable dependency injection of repositories into controllers
             services.AddTransient<IPlayedRepository, PlayedRepository>();
+            services.AddTransient<IWantToPlayRepository, WantToPlayRepository>();
 
             // enables dependency injection for following dbcontext objects
             services.AddDbContext<GamesPlayedContext>(options => options.UseSqlServer(Configuration.GetConnectionString("GamesPlayedContext")));

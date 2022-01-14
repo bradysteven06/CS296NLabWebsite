@@ -11,7 +11,7 @@
     <button type="submit">Search</button>
 </form>*@
 
-<a class="btn-outline-primary" asp-controller="WantToPlay" asp-action="Edit" asp-route-id="0">Add New Game</a>
+<a class="btn-outline-primary" asp-controller="WantToPlay" asp-action="Add" asp-route-id="0">Add New Game</a>
 <br />
 
 <div class="border border-dark">
@@ -31,7 +31,7 @@
                     <td>@game.Year</td>
                     <td>@game.Platform</td>
                     <td><a asp-controller="WantToPlay" asp-action="Edit" asp-route-id="@game.GameID">Edit</a></td>
-                    <td><a asp-controller="WantToPlay" asp-action="Remove" asp-route-id="@game.GameID">Delete</a></td>
+                    <td><a asp-controller="WantToPlay" asp-action="Delete" asp-route-id="@game.GameID">Delete</a></td>
                 </tr>
             }
         </tbody>
