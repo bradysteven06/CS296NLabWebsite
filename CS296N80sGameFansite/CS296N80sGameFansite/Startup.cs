@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CS296N80sGameFansite.Models;
 using Microsoft.EntityFrameworkCore;
+using CS296N80sGameFansite.Repositories;
 
 namespace CS296N80sGameFansite
 {
@@ -34,9 +35,12 @@ namespace CS296N80sGameFansite
                 options.AppendTrailingSlash = true;
             });
 
+            // enable dependency injection of repositories into controllers
+            services.AddTransient<IPlayedRepository, PlayedRepository>();
+            services.AddTransient<IWantToPlayRepository, WantToPlayRepository>();
+
             // enables dependency injection for following dbcontext objects
-            services.AddDbContext<GamesPlayedContext>(options => options.UseSqlServer(Configuration.GetConnectionString("GamesPlayedContext")));
-            services.AddDbContext<WantToPlayContext>(options => options.UseSqlServer(Configuration.GetConnectionString("WantToPlayContext")));
+            services.AddDbContext<GameListContext>(options => options.UseSqlServer(Configuration.GetConnectionString("GameListContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,4 @@
-﻿@model Played
+﻿@model WantToPlay
 
 @{
     string title = ViewBag.Action + " Game";
@@ -7,7 +7,7 @@
 
 <h1 class="text-center">@ViewBag.Title</h1>
 
-<form asp-action="Edit" method="post">
+<form asp-action="Add" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>@*Validation error message model-level*@
 <div class="form-group">
     <label asp-for="Name">Name: </label>
@@ -27,6 +27,6 @@
 
     <input type="hidden" asp-for="GameID" />
 
-    <button type="submit" class="btn btn-primary">Edit</button>
-    <a asp-controller="GamesPlayed" asp-action="GamesPlayed" class="btn btn-primary">Cancel</a>
+    <button type="submit" class="btn btn-primary">Add</button>
+    <a asp-controller="WantToPlay" asp-action="WantToPlay" class="btn btn-primary">Cancel</a>
 </form>

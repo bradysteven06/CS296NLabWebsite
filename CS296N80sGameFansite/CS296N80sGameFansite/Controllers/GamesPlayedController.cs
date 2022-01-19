@@ -4,63 +4,66 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CS296N80sGameFansite.Models;
+using CS296N80sGameFansite.Repositories;
 
 namespace CS296N80sGameFansite.Controllers
 {
     public class GamesPlayedController : Controller
     {
-        private GamesPlayedContext context { get; set; }
+        IPlayedRepository repo;
 
-        public GamesPlayedController(GamesPlayedContext ctx)
+        public GamesPlayedController(IPlayedRepository r)
         {
-            context = ctx;
+            repo = r;
         }
 
         [HttpGet]
         public IActionResult GamesPlayed()
         {
-            //ViewBag.gameList = context.GameInfo.ToList();
-            var gameList = context.GameInfo.OrderBy(m => m.Name).ToList();
+            var gameList = repo.Games.OrderBy(m => m.Name).ToList();
             return View(gameList);
         }
 
         [HttpGet]
         public IActionResult Add()
         {
-            ViewBag.Action = "Add";
-            return View("Edit", new GameInfoModel());
-        }
-
-        [HttpGet]
-        public IActionResult Edit(int id)
-        {
-            ViewBag.Action = "Edit";
-            var game = context.GameInfo.Find(id);
+            var game = new Played();
             return View(game);
         }
 
         [HttpPost]
-        public IActionResult Edit(GameInfoModel game)
+        public IActionResult Add(Played game)
         {
             if (ModelState.IsValid)
             {
-                if (game.GameID == 0)
-                { 
-                    context.GameInfo.Add(game); 
-                }
-                else
-                {
-                    context.GameInfo.Update(game);
-                }
-                context.SaveChanges();
+                repo.AddGame(game);
                 return RedirectToAction("GamesPlayed", "GamesPlayed");
             }
             else
             {
                 ModelState.AddModelError("", "Please correct all errors"); // validation error message model level
+                return View();
+            }
+        }
 
-                // if GameId is 0 "Add" else "Edit"
-                ViewBag.Action = (game.GameID == 0) ? "Add" : "Edit";
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var game = repo.GetGameByID(id);
+            return View(game);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Played game)
+        {
+            if (ModelState.IsValid)
+            {
+                repo.EditGame(game);
+                return RedirectToAction("GamesPlayed", "GamesPlayed");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Please correct all errors"); // validation error message model level
                 return View(game);
             }
         }
@@ -68,19 +71,19 @@ namespace CS296N80sGameFansite.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var game = context.GameInfo.Find(id);
+            var game = repo.GetGameByID(id);
             return View(game);
         }
 
         [HttpPost]
-        public IActionResult Delete(GameInfoModel game)
+        public IActionResult Delete(Played game)
         {
-            context.GameInfo.Remove(game);
-            context.SaveChanges();
+            repo.DeleteGame(game);
             return RedirectToAction("GamesPlayed", "GamesPlayed");
         }
 
         /* 
+         * FINISH SEARCH LATER
          [HttpPost]
          public IActionResult Search(GameInfoModel model)
          {
