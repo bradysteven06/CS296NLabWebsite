@@ -8,32 +8,32 @@ namespace CS296N80sGameFansite.Repositories
 {
     public class FakePlayedRepository : IPlayedRepository
     {
-        List<GameInfoModel> games = new List<GameInfoModel>();
+        List<Played> games = new List<Played>();
 
-        public IQueryable<GameInfoModel> Games
+        public IQueryable<Played> Games
         {
-            get { return games.AsQueryable<GameInfoModel>(); }
+            get { return games.AsQueryable<Played>(); }
         }
 
-        public void AddGame(GameInfoModel game)
+        public void AddGame(Played game)
         {
             game.GameID = games.Count;
             games.Add(game);
         }
 
-        public void DeleteGame(GameInfoModel game)
+        public void DeleteGame(Played game)
         {
             games.RemoveAt(game.GameID);
         }
 
-        public void EditGame(GameInfoModel game)
+        public void EditGame(Played game)
         {
             games[game.GameID].Name = game.Name;
             games[game.GameID].Year = game.Year;
             games[game.GameID].Platform = game.Platform;
         }
 
-        public GameInfoModel GetGameByID(int id)
+        public Played GetGameByID(int id)
         {
             return games[id];
         }

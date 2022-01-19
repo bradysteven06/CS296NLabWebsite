@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CS296N80sGameFansite.Models
 {
-    public class GameInfoModel
+    public class Played
     {
         [Key]
         public int GameID { get; set; }

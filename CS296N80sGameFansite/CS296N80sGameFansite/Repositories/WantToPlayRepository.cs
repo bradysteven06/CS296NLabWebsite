@@ -8,42 +8,42 @@ namespace CS296N80sGameFansite.Repositories
 {
     public class WantToPlayRepository : IWantToPlayRepository
     {
-        private WantToPlayContext context;
+        private GameListContext context;
 
-        public WantToPlayRepository(WantToPlayContext c)
+        public WantToPlayRepository(GameListContext c)
         {
             context = c;
         }
 
-        public IQueryable<GameInfoModel> Games
+        public IQueryable<WantToPlay> Games
         {
             get
             {
                 // Get all the GameInfo objects in the GamesPlayed DbSet
-                return context.GameInfo;
+                return context.WantToPlayInfo;
             }
         }
 
-        public GameInfoModel GetGameByID(int id)
+        public WantToPlay GetGameByID(int id)
         {
-            return context.GameInfo.Find(id);
+            return context.WantToPlayInfo.Find(id);
         }
 
-        public void AddGame(GameInfoModel game)
+        public void AddGame(WantToPlay game)
         {
-            context.GameInfo.Add(game);
+            context.WantToPlayInfo.Add(game);
             context.SaveChanges();
         }
 
-        public void EditGame(GameInfoModel game)
+        public void EditGame(WantToPlay game)
         {
-            context.GameInfo.Update(game);
+            context.WantToPlayInfo.Update(game);
             context.SaveChanges();
         }
 
-        public void DeleteGame(GameInfoModel game)
+        public void DeleteGame(WantToPlay game)
         {
-            context.GameInfo.Remove(game);
+            context.WantToPlayInfo.Remove(game);
             context.SaveChanges();
         }
     }

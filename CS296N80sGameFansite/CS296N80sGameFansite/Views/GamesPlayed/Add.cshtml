@@ -1,4 +1,4 @@
-﻿@model GameInfoModel
+﻿@model Played
 
 @{
     string title = ViewBag.Action + " Game";
@@ -27,6 +27,6 @@
 
     <input type="hidden" asp-for="GameID" />
 
-    <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
+    <button type="submit" class="btn btn-primary">Add</button>
     <a asp-controller="GamesPlayed" asp-action="GamesPlayed" class="btn btn-primary">Cancel</a>
 </form>

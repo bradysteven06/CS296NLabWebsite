@@ -16,7 +16,7 @@ namespace Tests
             // Arrange
             var fakeRepo = new FakePlayedRepository();
             var controller = new GamesPlayedController(fakeRepo);
-            var game = new GameInfoModel();
+            var game = new Played();
 
             // Adds a game
             // Act
@@ -35,7 +35,7 @@ namespace Tests
             // Arrange
             var fakeRepo = new FakePlayedRepository();
             var controller = new GamesPlayedController(fakeRepo);
-            var game = new GameInfoModel();
+            var game = new Played();
             controller.Add(game);
 
             // Edits game values saving new values
@@ -58,9 +58,9 @@ namespace Tests
             // Arrange
             var fakeRepo = new FakePlayedRepository();
             var controller = new GamesPlayedController(fakeRepo);
-            var game = new GameInfoModel();
-            var game2 = new GameInfoModel();
-            var game3 = new GameInfoModel();
+            var game = new Played();
+            var game2 = new Played();
+            var game3 = new Played();
             controller.Add(game);
             controller.Add(game2);
             controller.Add(game3);

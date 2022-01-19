@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace CS296N80sGameFansite.Migrations.WantToPlay
+namespace CS296N80sGameFansite.Migrations.GameList
 {
-    [DbContext(typeof(WantToPlayContext))]
-    partial class WantToPlayContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(GameListContext))]
+    partial class GameListContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -19,7 +19,7 @@ namespace CS296N80sGameFansite.Migrations.WantToPlay
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("CS296N80sGameFansite.Models.GameInfoModel", b =>
+            modelBuilder.Entity("CS296N80sGameFansite.Models.Played", b =>
                 {
                     b.Property<int>("GameID")
                         .ValueGeneratedOnAdd()
@@ -28,7 +28,8 @@ namespace CS296N80sGameFansite.Migrations.WantToPlay
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40);
 
                     b.Property<string>("Platform")
                         .IsRequired()
@@ -40,7 +41,7 @@ namespace CS296N80sGameFansite.Migrations.WantToPlay
 
                     b.HasKey("GameID");
 
-                    b.ToTable("GameInfo");
+                    b.ToTable("PlayedInfo");
 
                     b.HasData(
                         new
@@ -55,6 +56,47 @@ namespace CS296N80sGameFansite.Migrations.WantToPlay
                             GameID = 2,
                             Name = "Donkey Kong",
                             Platform = "Arcade",
+                            Year = 1981
+                        });
+                });
+
+            modelBuilder.Entity("CS296N80sGameFansite.Models.WantToPlay", b =>
+                {
+                    b.Property<int>("GameID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40);
+
+                    b.Property<string>("Platform")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Year")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.HasKey("GameID");
+
+                    b.ToTable("WantToPlayInfo");
+
+                    b.HasData(
+                        new
+                        {
+                            GameID = 1,
+                            Name = "Tetris",
+                            Platform = "Nintendo",
+                            Year = 1989
+                        },
+                        new
+                        {
+                            GameID = 2,
+                            Name = "Test",
+                            Platform = "Testrix",
                             Year = 1981
                         });
                 });

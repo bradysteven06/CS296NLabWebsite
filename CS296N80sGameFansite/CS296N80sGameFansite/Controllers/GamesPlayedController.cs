@@ -27,13 +27,12 @@ namespace CS296N80sGameFansite.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            ViewBag.Action = "Add";
-            var game = new GameInfoModel();
+            var game = new Played();
             return View(game);
         }
 
         [HttpPost]
-        public IActionResult Add(GameInfoModel game)
+        public IActionResult Add(Played game)
         {
             if (ModelState.IsValid)
             {
@@ -50,13 +49,12 @@ namespace CS296N80sGameFansite.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            ViewBag.Action = "Edit";
             var game = repo.GetGameByID(id);
             return View(game);
         }
 
         [HttpPost]
-        public IActionResult Edit(GameInfoModel game)
+        public IActionResult Edit(Played game)
         {
             if (ModelState.IsValid)
             {
@@ -78,13 +76,14 @@ namespace CS296N80sGameFansite.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(GameInfoModel game)
+        public IActionResult Delete(Played game)
         {
             repo.DeleteGame(game);
             return RedirectToAction("GamesPlayed", "GamesPlayed");
         }
 
         /* 
+         * FINISH SEARCH LATER
          [HttpPost]
          public IActionResult Search(GameInfoModel model)
          {

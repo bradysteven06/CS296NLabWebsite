@@ -8,10 +8,10 @@ namespace CS296N80sGameFansite.Repositories
 {
     public interface IPlayedRepository
     {
-        IQueryable<GameInfoModel> Games { get; } // Read games
-        GameInfoModel GetGameByID(int id); // Returns a game
-        void AddGame(GameInfoModel game); // Add a game
-        void EditGame(GameInfoModel game); // Edit game info
-        void DeleteGame(GameInfoModel game); // Delete game
+        IQueryable<Played> Games { get; } // Read games
+        Played GetGameByID(int id); // Returns a game
+        void AddGame(Played game); // Add a game
+        void EditGame(Played game); // Edit game info
+        void DeleteGame(Played game); // Delete game
     }
 }
