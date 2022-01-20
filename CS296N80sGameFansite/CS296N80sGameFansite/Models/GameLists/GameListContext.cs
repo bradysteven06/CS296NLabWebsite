@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CS296N80sGameFansite.Models
 {
-    public class GameListContext : IdentityDbContext
+    public class GameListContext : DbContext
     {
         public GameListContext(DbContextOptions<GameListContext> options) : base(options) { }
 
