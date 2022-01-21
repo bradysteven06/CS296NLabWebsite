@@ -9,5 +9,6 @@ namespace CS296N80sGameFansite.Models.GameLists
 {
     public class AppUser : IdentityUser
     {
+        public string Name { get; set; }
     }
 }
