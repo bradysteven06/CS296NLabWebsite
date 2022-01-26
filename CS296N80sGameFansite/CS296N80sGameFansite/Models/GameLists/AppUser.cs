@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CS296N80sGameFansite.Models.GameLists
+namespace CS296N80sGameFansite.Models
 {
     public class AppUser : IdentityUser
     {

@@ -5,6 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20220126125026_identity.cs" />
+    <Compile Remove="Migrations\20220126125026_identity.Designer.cs" />
+    <Compile Remove="Migrations\20220126125546_identity.cs" />
+    <Compile Remove="Migrations\20220126125546_identity.Designer.cs" />
+    <Compile Remove="Migrations\20220126130259_identity.cs" />
+    <Compile Remove="Migrations\20220126130259_identity.Designer.cs" />
+    <Compile Remove="Migrations\20220126130337_initial.cs" />
+    <Compile Remove="Migrations\20220126130337_initial.Designer.cs" />
+    <Compile Remove="Migrations\20220126131722_initial.cs" />
+    <Compile Remove="Migrations\20220126131722_initial.Designer.cs" />
+    <Compile Remove="Migrations\20220126131829_identity.cs" />
+    <Compile Remove="Migrations\20220126131829_identity.Designer.cs" />
+    <Compile Remove="Migrations\20220126131919_identity.cs" />
+    <Compile Remove="Migrations\20220126131919_identity.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Shared\Error.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />

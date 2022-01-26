@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using CS296N80sGameFansite.Models;
 using Microsoft.EntityFrameworkCore;
 using CS296N80sGameFansite.Repositories;
-using CS296N80sGameFansite.Models.GameLists;
 using Microsoft.AspNetCore.Identity;
 
 namespace CS296N80sGameFansite
