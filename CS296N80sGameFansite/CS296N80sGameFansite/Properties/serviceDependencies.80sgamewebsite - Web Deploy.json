@@ -1,10 +1,10 @@
 {
   "dependencies": {
     "mssql1": {
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/80s-game-website/databases/80sGameWebSite",
-      "type": "mssql.azure",
+      "type": "mssql",
       "connectionId": "ConnectionStrings:GameListContext",
-      "secretStore": "AzureAppSettings"
+      "suggestion": "true",
+      "ignored": "true"
     }
   }
 }
