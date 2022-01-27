@@ -44,6 +44,7 @@ namespace CS296N80sGameFansite
             services.AddDbContext<GameListContext>(options => options.UseSqlServer(Configuration.GetConnectionString("GameListContext")));
 
             services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<GameListContext>().AddDefaultTokenProviders();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

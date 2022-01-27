@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CS296N80sGameFansite.Migrations
 {
     [DbContext(typeof(GameListContext))]
-    [Migration("20220126162609_identity")]
+    [Migration("20220127111844_identity")]
     partial class identity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

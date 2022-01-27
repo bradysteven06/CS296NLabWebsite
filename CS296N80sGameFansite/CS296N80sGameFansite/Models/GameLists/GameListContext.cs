@@ -9,7 +9,11 @@ namespace CS296N80sGameFansite.Models
 {
     public class GameListContext : IdentityDbContext
     {
-        public GameListContext(DbContextOptions<GameListContext> options) : base(options) { }
+        public GameListContext(DbContextOptions<GameListContext> options) : base(options) 
+        {
+            Database.EnsureDeleted();
+            Database.EnsureCreated();
+        }
 
         public DbSet<Played> PlayedInfo { get; set; }
         public DbSet<WantToPlay> WantToPlayInfo { get; set; }
