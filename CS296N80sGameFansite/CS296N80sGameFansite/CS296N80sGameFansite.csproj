@@ -2,11 +2,36 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>bbd77ce2-1d10-4505-91b5-e081136ba686</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\GameList\20220119123720_Initial.cs" />
-    <Compile Remove="Migrations\GameList\20220119123720_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20220126125026_identity.cs" />
+    <Compile Remove="Migrations\20220126125026_identity.Designer.cs" />
+    <Compile Remove="Migrations\20220126125546_identity.cs" />
+    <Compile Remove="Migrations\20220126125546_identity.Designer.cs" />
+    <Compile Remove="Migrations\20220126130259_identity.cs" />
+    <Compile Remove="Migrations\20220126130259_identity.Designer.cs" />
+    <Compile Remove="Migrations\20220126130337_initial.cs" />
+    <Compile Remove="Migrations\20220126130337_initial.Designer.cs" />
+    <Compile Remove="Migrations\20220126131722_initial.cs" />
+    <Compile Remove="Migrations\20220126131722_initial.Designer.cs" />
+    <Compile Remove="Migrations\20220126131829_identity.cs" />
+    <Compile Remove="Migrations\20220126131829_identity.Designer.cs" />
+    <Compile Remove="Migrations\20220126131919_identity.cs" />
+    <Compile Remove="Migrations\20220126131919_identity.Designer.cs" />
+    <Compile Remove="Migrations\20220126162609_identity.cs" />
+    <Compile Remove="Migrations\20220126162609_identity.Designer.cs" />
+    <Compile Remove="Migrations\20220127065715_identity.cs" />
+    <Compile Remove="Migrations\20220127065715_identity.Designer.cs" />
+    <Compile Remove="Migrations\20220129135941_identity.cs" />
+    <Compile Remove="Migrations\20220129135941_identity.Designer.cs" />
+    <Compile Remove="Migrations\20220129142847_identity.cs" />
+    <Compile Remove="Migrations\20220129142847_identity.Designer.cs" />
+    <Compile Remove="Migrations\20220129143708_identity.cs" />
+    <Compile Remove="Migrations\20220129143708_identity.Designer.cs" />
+    <Compile Remove="Migrations\20220129144834_identity.cs" />
+    <Compile Remove="Migrations\20220129144834_identity.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +44,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.0.0" />
+    <PackageReference Include="Azure.Identity" Version="1.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
@@ -28,7 +56,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\GameList\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>
