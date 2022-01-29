@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CS296N80sGameFansite.Models
 {
-    public class GameListContext : IdentityDbContext
+    public class GameListContext : IdentityDbContext<AppUser>
     {
         public GameListContext(DbContextOptions<GameListContext> options) : base(options) {}
 

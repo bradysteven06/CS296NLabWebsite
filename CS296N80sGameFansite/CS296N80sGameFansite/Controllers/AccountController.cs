@@ -27,7 +27,7 @@ namespace CS296N80sGameFansite.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new AppUser { UserName = model.Username };
+                var user = new AppUser { UserName = model.Username, Name = model.Username}; // TODO: change Name to a different value later
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
