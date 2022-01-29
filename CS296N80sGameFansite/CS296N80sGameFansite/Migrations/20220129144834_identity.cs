@@ -40,6 +40,7 @@ namespace CS296N80sGameFansite.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
+                    Discriminator = table.Column<string>(nullable: false),
                     Name = table.Column<string>(maxLength: 60, nullable: true)
                 },
                 constraints: table =>
