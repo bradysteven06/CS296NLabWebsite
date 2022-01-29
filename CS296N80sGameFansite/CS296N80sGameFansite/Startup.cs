@@ -66,7 +66,6 @@ namespace CS296N80sGameFansite
             app.UseRouting();
 
             app.UseAuthentication();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

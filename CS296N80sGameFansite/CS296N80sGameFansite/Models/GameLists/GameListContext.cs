@@ -11,8 +11,9 @@ namespace CS296N80sGameFansite.Models
     {
         public GameListContext(DbContextOptions<GameListContext> options) : base(options) 
         {
+            /* might need for publishing to azure. keep for now.
             Database.EnsureDeleted();
-            Database.EnsureCreated();
+            Database.EnsureCreated();*/
         }
 
         public DbSet<Played> PlayedInfo { get; set; }
