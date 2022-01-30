@@ -17,7 +17,17 @@ namespace CS296N80sGameFansite.Models
         // Adds initial values to database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Played>().HasData(
+            base.OnModelCreating(modelBuilder);
+
+            // Set primary keys
+            modelBuilder.Entity<Played>().HasKey(played => new { played.GameID });
+            modelBuilder.Entity<WantToPlay>().HasKey(wantToPlay => new { wantToPlay.GameID });
+
+            // Seed initial data
+            modelBuilder.ApplyConfiguration(new SeedPlayed());
+            modelBuilder.ApplyConfiguration(new SeedWantToPlay());
+
+            /*modelBuilder.Entity<Played>().HasData(
                 new Played { GameID = 1, Name = "Tetris", Year = 1989, Platform = "Nintendo" },
                 new Played { GameID = 2, Name = "Donkey Kong", Year = 1981, Platform = "Arcade" }
                 );
@@ -25,7 +35,7 @@ namespace CS296N80sGameFansite.Models
             modelBuilder.Entity<WantToPlay>().HasData(
                 new WantToPlay { GameID = 1, Name = "Tetris", Year = 1989, Platform = "Nintendo" },
                 new WantToPlay { GameID = 2, Name = "Test", Year = 1981, Platform = "Testrix" }
-                );
+                );*/
         }
     }
 }
