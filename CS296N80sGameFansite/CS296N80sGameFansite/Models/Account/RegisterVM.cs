@@ -4,6 +4,10 @@ namespace CS296N80sGameFansite.Models
 {
     public class RegisterVM
     {
+        [Required(ErrorMessage = "Please enter your name.")]
+        [StringLength(255)]
+        public string Name { get; set; }
+
         [Required(ErrorMessage = "Please enter a username.")]
         [StringLength(255)]
         public string Username { get; set; }

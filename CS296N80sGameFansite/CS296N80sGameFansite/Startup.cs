@@ -73,6 +73,8 @@ namespace CS296N80sGameFansite
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            SeedUsers.SeedAdminUser(app.ApplicationServices).Wait();
         }
     }
 }

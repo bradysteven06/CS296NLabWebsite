@@ -36,6 +36,13 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="Games">Play Game</a>
                         </li>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin">Administration</a>
+                            </li>}
+
                         @if (signInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
