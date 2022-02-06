@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CS296N80sGameFansite.Models;
 using CS296N80sGameFansite.Repositories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CS296N80sGameFansite.Controllers
 {
@@ -17,7 +18,7 @@ namespace CS296N80sGameFansite.Controllers
             repo = r;
         }
 
-        [HttpGet]
+        [Authorize]
         public IActionResult GamesPlayed()
         {
             var gameList = repo.Games.OrderBy(m => m.Name).ToList();
@@ -32,6 +33,7 @@ namespace CS296N80sGameFansite.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Add(Played game)
         {
             if (ModelState.IsValid)

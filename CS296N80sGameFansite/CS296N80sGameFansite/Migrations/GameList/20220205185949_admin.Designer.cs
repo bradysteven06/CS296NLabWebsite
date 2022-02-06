@@ -4,14 +4,16 @@ using CS296N80sGameFansite.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CS296N80sGameFansite.Migrations.GameList
 {
     [DbContext(typeof(GameListContext))]
-    partial class GameListContextModelSnapshot : ModelSnapshot
+    [Migration("20220205185949_admin")]
+    partial class admin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
