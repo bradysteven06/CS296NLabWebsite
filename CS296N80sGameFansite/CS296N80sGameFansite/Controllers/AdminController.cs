@@ -16,17 +16,13 @@ namespace CS296N80sGameFansite.Controllers
 
         private UserManager<AppUser> userManager;
         private RoleManager<IdentityRole> roleManager;
-        private IPlayedRepository playedRepo;
-        private IWantToPlayRepository wantToPlayRepo;
 
         public AdminController(UserManager<AppUser> userMngr,
-                                RoleManager<IdentityRole> roleMngr,
-                                IPlayedRepository pRepo, IWantToPlayRepository wRepo)
+                                RoleManager<IdentityRole> roleMngr)
         {
             userManager = userMngr;
             roleManager = roleMngr;
-            playedRepo = pRepo;
-            wantToPlayRepo = wRepo;
+
         }
 
         /// <summary>
@@ -34,7 +30,7 @@ namespace CS296N80sGameFansite.Controllers
         /// roles in the AppUser.RoleNames property
         /// </summary>
         /// <returns>ViewResult</returns>
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Administration()
         {
             // Modified this loop from the version in Murach to prevent "data reader already open" errors
             List<AppUser> users = userManager.Users.ToList();
@@ -55,23 +51,11 @@ namespace CS296N80sGameFansite.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
-            /*IdentityResult result = null;*/
+            IdentityResult result = null;
             AppUser user = await userManager.FindByIdAsync(id);
             if (user != null)
             {
-                // Check to see if the user has posted a review
-                /*if (0 == (from r in reviewRepo.Reviews
-                            where r.Reviewer.Name == user.Name
-                            select r).Count<Review>())
-                {
-
-                    result = await userManager.DeleteAsync(user);
-                }
-                else
-                {
-                    result = IdentityResult.Failed(new IdentityError()
-                    { Description = "User's reviews must be deleted first" });
-                }
+                result = await userManager.DeleteAsync(user);
 
                 if (!result.Succeeded)
                 {
@@ -87,9 +71,9 @@ namespace CS296N80sGameFansite.Controllers
                 else
                 {
                     TempData["message"] = "";  // No errors, clear the message
-                }*/
+                }
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Administration");
         }
 
         [HttpPost]
@@ -106,7 +90,7 @@ namespace CS296N80sGameFansite.Controllers
                 AppUser user = await userManager.FindByIdAsync(id);
                 await userManager.AddToRoleAsync(user, adminRole.Name);
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Administration");
         }
 
         [HttpPost]
@@ -115,7 +99,7 @@ namespace CS296N80sGameFansite.Controllers
             AppUser user = await userManager.FindByIdAsync(id);
             var result = await userManager.RemoveFromRoleAsync(user, "Admin");
             if (result.Succeeded) { }
-            return RedirectToAction("Index");
+            return RedirectToAction("Administration");
         }
 
 
@@ -126,14 +110,14 @@ namespace CS296N80sGameFansite.Controllers
         {
             IdentityRole role = await roleManager.FindByIdAsync(id);
             await roleManager.DeleteAsync(role);
-            return RedirectToAction("Index");
+            return RedirectToAction("Administration");
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateAdminRole()
         {
             await roleManager.CreateAsync(new IdentityRole("Admin"));
-            return RedirectToAction("Index");
+            return RedirectToAction("Administration");
         }
 
         [HttpGet]
@@ -152,7 +136,7 @@ namespace CS296N80sGameFansite.Controllers
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Administration");
                 }
                 else
                 {

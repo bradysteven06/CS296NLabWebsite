@@ -40,13 +40,13 @@
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin">Administration</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Administration">Administration </a>
                             </li>}
 
                         @if (signInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account"
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" 
                                    asp-action="LogOut">Logout</a> &nbsp; @User.Identity.Name
                             </li>
 
