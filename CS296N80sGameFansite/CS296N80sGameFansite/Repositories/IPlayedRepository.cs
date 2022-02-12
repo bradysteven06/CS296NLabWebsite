@@ -10,8 +10,8 @@ namespace CS296N80sGameFansite.Repositories
     {
         IQueryable<Played> Games { get; } // Read games
         Played GetGameByID(int id); // Returns a game
-        void AddGame(Played game); // Add a game
-        void EditGame(Played game); // Edit game info
-        void DeleteGame(Played game); // Delete game
+        Task<int> AddGameAsync(Played game); // Add a game
+        Task<int> EditGameAsync(Played game); // Edit game info
+        Task<int> DeleteGameAsync(Played game); // Delete game
     }
 }

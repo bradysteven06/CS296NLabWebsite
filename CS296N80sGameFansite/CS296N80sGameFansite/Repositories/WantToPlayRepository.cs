@@ -29,22 +29,22 @@ namespace CS296N80sGameFansite.Repositories
             return context.WantToPlayInfo.Find(id);
         }
 
-        public void AddGame(WantToPlay game)
+        public async Task<int> AddGameAsync(WantToPlay game)
         {
-            context.WantToPlayInfo.Add(game);
-            context.SaveChanges();
+            await context.WantToPlayInfo.AddAsync(game);
+            return await context.SaveChangesAsync();
         }
 
-        public void EditGame(WantToPlay game)
+        public async Task<int> EditGameAsync(WantToPlay game)
         {
             context.WantToPlayInfo.Update(game);
-            context.SaveChanges();
+            return await context.SaveChangesAsync();
         }
 
-        public void DeleteGame(WantToPlay game)
+        public async Task<int> DeleteGameAsync(WantToPlay game)
         {
             context.WantToPlayInfo.Remove(game);
-            context.SaveChanges();
+            return await context.SaveChangesAsync();
         }
     }
 }

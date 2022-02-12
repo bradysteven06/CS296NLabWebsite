@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CS296N80sGameFansite.Models;
 using CS296N80sGameFansite.Repositories;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace CS296N80sGameFansite.Controllers
 {
@@ -19,9 +20,9 @@ namespace CS296N80sGameFansite.Controllers
         }
 
         [Authorize]
-        public IActionResult WantToPlay()
+        public async Task<IActionResult> WantToPlay()
         {
-            var gameList = repo.Games.OrderBy(m => m.Name).ToList();
+            List<WantToPlay> gameList = await repo.Games.ToListAsync<WantToPlay>();
             return View(gameList);
         }
 
@@ -34,11 +35,11 @@ namespace CS296N80sGameFansite.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult Add(WantToPlay game)
+        public async Task<IActionResult> Add(WantToPlay game)
         {
             if (ModelState.IsValid)
             {
-                repo.AddGame(game);
+                await repo.AddGameAsync(game);
                 return RedirectToAction("WantToPlay", "WantToPlay");
             }
             else
@@ -56,11 +57,11 @@ namespace CS296N80sGameFansite.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(WantToPlay game)
+        public async Task<IActionResult> Edit(WantToPlay game)
         {
             if (ModelState.IsValid)
             {
-                repo.EditGame(game);
+                await repo.EditGameAsync(game);
                 return RedirectToAction("WantToPlay", "WantToPlay");
             }
             else
@@ -78,9 +79,9 @@ namespace CS296N80sGameFansite.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(WantToPlay game)
+        public async Task<IActionResult> Delete(WantToPlay game)
         {
-            repo.DeleteGame(game);
+            await repo.DeleteGameAsync(game);
             return RedirectToAction("WantToPlay", "WantToPlay");
         }
 

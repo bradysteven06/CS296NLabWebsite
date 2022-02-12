@@ -15,22 +15,25 @@ namespace CS296N80sGameFansite.Repositories
             get { return games.AsQueryable<WantToPlay>(); }
         }
 
-        public void AddGame(WantToPlay game)
+        public async Task<int> AddGameAsync(WantToPlay game)
         {
             game.GameID = games.Count;
-            games.Add(game);
+            await Task<int>.Run(() => games.Add(game));
+            return 1;
         }
 
-        public void DeleteGame(WantToPlay game)
+        public async Task<int> DeleteGameAsync(WantToPlay game)
         {
-            games.RemoveAt(game.GameID);
+            await Task<int>.Run(() => games.RemoveAt(game.GameID));
+            return 1;
         }
 
-        public void EditGame(WantToPlay game)
+        public async Task<int> EditGameAsync(WantToPlay game)
         {
-            games[game.GameID].Name = game.Name;
-            games[game.GameID].Year = game.Year;
-            games[game.GameID].Platform = game.Platform;
+            await Task<int>.Run(() => games[game.GameID].Name = game.Name);
+            await Task<int>.Run(() => games[game.GameID].Year = game.Year);
+            await Task<int>.Run(() => games[game.GameID].Platform = game.Platform);
+            return 1;
         }
 
         public WantToPlay GetGameByID(int id)
