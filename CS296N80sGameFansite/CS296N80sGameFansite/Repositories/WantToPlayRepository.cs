@@ -24,6 +24,7 @@ namespace CS296N80sGameFansite.Repositories
             }
         }
 
+        //TODO: figure out how to make asynchronous
         public WantToPlay GetGameByID(int id)
         {
             return context.WantToPlayInfo.Find(id);
