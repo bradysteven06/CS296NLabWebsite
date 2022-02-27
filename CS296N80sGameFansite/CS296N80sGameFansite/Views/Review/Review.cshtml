@@ -1,0 +1,37 @@
+﻿@model Review
+@{
+    ViewData["Title"] = "Review";
+}
+
+<h1>Game Review</h1>
+<strong>Enter your Review</strong>
+<br />
+<form method="post" class="container">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="row p-2">
+        <label asp-for="GameName" class="control-label col-md-1">Title</label>
+        <input asp-for="GameName" class="form-control col-md-6" />
+        <span asp-validation-for="GameName" class="text-danger"></span>
+    </div>
+    <div class="row p-2">
+        <label asp-for="Genre" class="control-label  col-md-1">Author</label><br />
+        <input asp-for="Genre" class="form-control col-md-6" /><br />
+    </div>
+    <div class="row p-2">
+        <label asp-for="ReviewText" class="control-label  col-md-1">Review</label><br />
+        <textarea asp-for="ReviewText" placeholder="Write your review here" class="form-control col-md-6"></textarea><br />
+        <span asp-validation-for="ReviewText" class="text-danger"></span><br />
+    </div>
+    <div class="row p-2">
+        <label asp-for="Rating" class="control-label  col-md-1">Rating</label><br />
+        <input asp-for="Rating" min="1" max="5" class="form-control col-md-6" />
+        <span asp-validation-for="Rating" class="text-danger"></span><br />
+    </div>
+    <div class="row p-2">
+        <button type="submit" class="form-control btn btn-success col-2">Submit</button>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -39,6 +39,7 @@ namespace CS296N80sGameFansite
             // enable dependency injection of repositories into controllers
             services.AddTransient<IPlayedRepository, PlayedRepository>();
             services.AddTransient<IWantToPlayRepository, WantToPlayRepository>();
+            services.AddTransient<IReviewRepository, ReviewRepository>();
 
             // enables dependency injection for following dbcontext objects
             services.AddDbContext<GameListContext>(options => options.UseSqlServer(Configuration.GetConnectionString("GameListContext")));
@@ -74,7 +75,7 @@ namespace CS296N80sGameFansite
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            SeedUsers.SeedAdminUser(app.ApplicationServices).Wait();
+            SeedData.SeedAdminUser(app.ApplicationServices).Wait();
         }
     }
 }

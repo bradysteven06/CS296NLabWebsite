@@ -13,6 +13,7 @@ namespace CS296N80sGameFansite.Models
 
         public DbSet<Played> PlayedInfo { get; set; }
         public DbSet<WantToPlay> WantToPlayInfo { get; set; }
+        public DbSet<Review> Reviews { get; set; }
         public DbSet<AppUser> Users { get; set; }
 
         // Adds initial values to database
@@ -23,8 +24,11 @@ namespace CS296N80sGameFansite.Models
             // Set primary keys
             modelBuilder.Entity<Played>().HasKey(played => new { played.GameID });
             modelBuilder.Entity<WantToPlay>().HasKey(wantToPlay => new { wantToPlay.GameID });
+            modelBuilder.Entity<Review>().HasKey(review => new { review.ReviewId });
+            modelBuilder.Entity<Comment>().HasKey(comment => new { comment.CommentId});
 
             // Seed initial data
+            modelBuilder.Seed();
             modelBuilder.ApplyConfiguration(new SeedPlayed());
             modelBuilder.ApplyConfiguration(new SeedWantToPlay());
         }
