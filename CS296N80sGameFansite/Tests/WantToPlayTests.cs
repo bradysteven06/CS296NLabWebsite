@@ -4,6 +4,7 @@ using CS296N80sGameFansite.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 
@@ -12,7 +13,7 @@ namespace Tests
     public class WantToPlayTests
     {
         [Fact]
-        public void AddTest()
+        public async Task AddTest()
         {
             // Arrange
             var fakeRepo = new FakeWantToPlayRepository();
@@ -21,7 +22,7 @@ namespace Tests
 
             // Adds a game
             // Act
-            controller.Add(game);
+            await controller.Add(game);
 
             // Checks that there is one game in list
             // Assert
@@ -30,21 +31,21 @@ namespace Tests
         }
 
         [Fact]
-        public void EditTest()
+        public async Task EditTest()
         {
             // Adds a game
             // Arrange
             var fakeRepo = new FakeWantToPlayRepository();
             var controller = new WantToPlayController(fakeRepo);
             var game = new WantToPlay();
-            controller.Add(game);
+            await controller.Add(game);
 
             // Edits game values saving new values
             // Act
             game.Name = "Test";
             game.Year = 1984;
             game.Platform = "Testrix";
-            controller.Edit(game);
+            await controller.Edit(game);
 
             // Checks value of name for game
             // Assert
@@ -53,7 +54,7 @@ namespace Tests
         }
 
         [Fact]
-        public void DeleteTest()
+        public async Task DeleteTest()
         {
             // Adds 3 games
             // Arrange
@@ -62,13 +63,13 @@ namespace Tests
             var game = new WantToPlay();
             var game2 = new WantToPlay();
             var game3 = new WantToPlay();
-            controller.Add(game);
-            controller.Add(game2);
-            controller.Add(game3);
+            await controller.Add(game);
+            await controller.Add(game2);
+            await controller.Add(game3);
 
             // Deletes second game added
             // Act
-            fakeRepo.DeleteGame(game2);
+            await fakeRepo.DeleteGameAsync(game2);
 
             // checks that 2 games left and that they are first and third game added
             // Assert

@@ -24,27 +24,28 @@ namespace CS296N80sGameFansite.Repositories
             }
         }
 
+        //TODO: figure out how to make asynchronous
         public Played GetGameByID(int id)
         {
             return context.PlayedInfo.Find(id);
         }
 
-        public void AddGame(Played game)
+        public async Task<int> AddGameAsync(Played game)
         {
-            context.PlayedInfo.Add(game);
-            context.SaveChanges();
+            await context.PlayedInfo.AddAsync(game);
+            return await context.SaveChangesAsync();
         }
 
-        public void EditGame(Played game)
+        public async Task<int> EditGameAsync(Played game)
         {
             context.PlayedInfo.Update(game);
-            context.SaveChanges();
+            return await context.SaveChangesAsync();
         }
 
-        public void DeleteGame(Played game)
+        public async Task<int> DeleteGameAsync(Played game)
         {
             context.PlayedInfo.Remove(game);
-            context.SaveChanges();
+            return await context.SaveChangesAsync();
         }
     }
 }

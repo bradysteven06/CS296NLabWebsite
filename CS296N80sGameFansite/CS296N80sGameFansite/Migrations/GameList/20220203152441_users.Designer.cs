@@ -4,14 +4,16 @@ using CS296N80sGameFansite.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CS296N80sGameFansite.Migrations.GameList
 {
     [DbContext(typeof(GameListContext))]
-    partial class GameListContextModelSnapshot : ModelSnapshot
+    [Migration("20220203152441_users")]
+    partial class users
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,130 +89,6 @@ namespace CS296N80sGameFansite.Migrations.GameList
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "A",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "0ce92b50-d8b6-48db-95d5-b6556afd3985",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            Name = "Steven Brady",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "46753597-0bf3-4e6f-8f08-a453f1975a43",
-                            TwoFactorEnabled = false,
-                            UserName = "StevenB"
-                        },
-                        new
-                        {
-                            Id = "B",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "9b813130-e172-4904-9604-8df53a1f8413",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            Name = "Emma Watson",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "7faf4e28-2712-49de-afbe-4af8becb9ea4",
-                            TwoFactorEnabled = false,
-                            UserName = "EmmaW"
-                        },
-                        new
-                        {
-                            Id = "C",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "c3d4f00a-cf0c-4ff6-bc08-8b2e838c656c",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            Name = "Daniel Radcliffe",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "97b19175-7971-4554-96ca-295b7653b0b6",
-                            TwoFactorEnabled = false,
-                            UserName = "DanielR"
-                        },
-                        new
-                        {
-                            Id = "D",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "6ad1ff99-bcd5-4347-9612-4b7a5d550d6e",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            Name = "Scarlett Johansson",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "d0e1227e-d35c-410e-b754-904955c9e517",
-                            TwoFactorEnabled = false,
-                            UserName = "ScarlettJ"
-                        });
-                });
-
-            modelBuilder.Entity("CS296N80sGameFansite.Models.Comment", b =>
-                {
-                    b.Property<int>("CommentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CommentDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CommentText")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CommenterId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("ReviewId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CommentId");
-
-                    b.HasIndex("CommenterId");
-
-                    b.HasIndex("ReviewId");
-
-                    b.ToTable("Comment");
-
-                    b.HasData(
-                        new
-                        {
-                            CommentId = 1,
-                            CommentDate = new DateTime(2020, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CommentText = "I loved that game too!",
-                            CommenterId = "A",
-                            ReviewId = 3
-                        },
-                        new
-                        {
-                            CommentId = 2,
-                            CommentDate = new DateTime(2020, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CommentText = "Great game.",
-                            CommenterId = "C",
-                            ReviewId = 2
-                        },
-                        new
-                        {
-                            CommentId = 3,
-                            CommentDate = new DateTime(2021, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CommentText = "So nostalgic",
-                            CommenterId = "B",
-                            ReviewId = 1
-                        },
-                        new
-                        {
-                            CommentId = 4,
-                            CommentDate = new DateTime(2021, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CommentText = "Lots of fun.",
-                            CommenterId = "B",
-                            ReviewId = 4
-                        },
-                        new
-                        {
-                            CommentId = 5,
-                            CommentDate = new DateTime(2021, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CommentText = "Can't stop playing.",
-                            CommenterId = "A",
-                            ReviewId = 2
-                        });
                 });
 
             modelBuilder.Entity("CS296N80sGameFansite.Models.Played", b =>
@@ -251,83 +129,6 @@ namespace CS296N80sGameFansite.Migrations.GameList
                             Name = "Donkey Kong",
                             Platform = "Arcade",
                             Year = 1981
-                        });
-                });
-
-            modelBuilder.Entity("CS296N80sGameFansite.Models.Review", b =>
-                {
-                    b.Property<int>("ReviewId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("GameName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Genre")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ReviewDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ReviewText")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
-
-                    b.Property<string>("ReviewerId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("ReviewId");
-
-                    b.HasIndex("ReviewerId");
-
-                    b.ToTable("Reviews");
-
-                    b.HasData(
-                        new
-                        {
-                            ReviewId = 1,
-                            GameName = "Tetris",
-                            Genre = "Puzzle",
-                            Rating = 5,
-                            ReviewDate = new DateTime(2020, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ReviewText = "Great game, a must play!",
-                            ReviewerId = "A"
-                        },
-                        new
-                        {
-                            ReviewId = 2,
-                            GameName = "Pacman",
-                            Genre = "Platform",
-                            Rating = 5,
-                            ReviewDate = new DateTime(2020, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ReviewText = "Great game, a must play!",
-                            ReviewerId = "C"
-                        },
-                        new
-                        {
-                            ReviewId = 3,
-                            GameName = "Tetris",
-                            Genre = "Puzzle",
-                            Rating = 5,
-                            ReviewDate = new DateTime(2020, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ReviewText = "Great game, a must play!",
-                            ReviewerId = "D"
-                        },
-                        new
-                        {
-                            ReviewId = 4,
-                            GameName = "Donkey Kong",
-                            Genre = "Platformer",
-                            Rating = 4,
-                            ReviewDate = new DateTime(2020, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ReviewText = "Great game, a must play!",
-                            ReviewerId = "B"
                         });
                 });
 
@@ -501,24 +302,6 @@ namespace CS296N80sGameFansite.Migrations.GameList
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("CS296N80sGameFansite.Models.Comment", b =>
-                {
-                    b.HasOne("CS296N80sGameFansite.Models.AppUser", "Commenter")
-                        .WithMany()
-                        .HasForeignKey("CommenterId");
-
-                    b.HasOne("CS296N80sGameFansite.Models.Review", null)
-                        .WithMany("Comments")
-                        .HasForeignKey("ReviewId");
-                });
-
-            modelBuilder.Entity("CS296N80sGameFansite.Models.Review", b =>
-                {
-                    b.HasOne("CS296N80sGameFansite.Models.AppUser", "Reviewer")
-                        .WithMany()
-                        .HasForeignKey("ReviewerId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

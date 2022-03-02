@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using CS296N80sGameFansite.Models;
 using Microsoft.EntityFrameworkCore;
 using CS296N80sGameFansite.Repositories;
+using Microsoft.AspNetCore.Identity;
 
 namespace CS296N80sGameFansite
 {
@@ -38,9 +39,12 @@ namespace CS296N80sGameFansite
             // enable dependency injection of repositories into controllers
             services.AddTransient<IPlayedRepository, PlayedRepository>();
             services.AddTransient<IWantToPlayRepository, WantToPlayRepository>();
+            services.AddTransient<IReviewRepository, ReviewRepository>();
 
             // enables dependency injection for following dbcontext objects
             services.AddDbContext<GameListContext>(options => options.UseSqlServer(Configuration.GetConnectionString("GameListContext")));
+
+            services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<GameListContext>().AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,6 +65,7 @@ namespace CS296N80sGameFansite
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -69,6 +74,8 @@ namespace CS296N80sGameFansite
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            SeedData.SeedAdminUser(app.ApplicationServices).Wait();
         }
     }
 }

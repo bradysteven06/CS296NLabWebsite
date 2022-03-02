@@ -9,6 +9,9 @@
 </head>
 <body>
     <header>
+        @using Microsoft.AspNetCore.Identity
+
+        @inject SignInManager<AppUser> signInManager
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Video Games Of The 80s</a>
@@ -25,6 +28,9 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="EightiesGames">80s Games</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Review" asp-action="Index">Reviews</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="GamesPlayed" asp-action="GamesPlayed">Games Played</a>
                         </li>
                         <li class="nav-item">
@@ -33,6 +39,31 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="Games">Play Game</a>
                         </li>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Administration">Administration </a>
+                            </li>
+}
+
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account"
+                                   asp-action="LogOut">Logout</a> &nbsp; @User.Identity.Name
+                            </li>
+
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

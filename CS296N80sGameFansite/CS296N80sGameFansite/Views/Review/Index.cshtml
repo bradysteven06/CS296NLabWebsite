@@ -1,0 +1,73 @@
+﻿@model List<Review>
+
+@{
+    ViewData["Title"] = "Game Reviews";
+}
+
+<h3 class="display-4">Filter Reviews</h3>
+Enter a game title and/or name of a reviewer:
+<form method="get" asp-controller="Review" asp-action="FilterReviews" class="container">
+    <div class="row p-2">
+        <label for="GameName" class="control-label col-md-1">Title</label>
+        <input name="gameTitle" class="form-control col-md-6" />
+    </div><div class="row p-2">
+        <label for="ReviewerName" class="control-label col-md-1">Name</label>
+        <input name="reviewerName" class="form-control col-md-6" />
+    </div>
+    <div class="row p-2">
+        <button type="submit" class="form-control btn btn-success col-2">Submit</button>
+        <a asp-controller="Review" asp-action="Index" class="btn-xs btn-secondary col-2 pl-2">Clear filters</a>
+    </div>
+</form>
+
+<h3 class="display-4">Game Reviews</h3>
+
+@{
+    String currentTitle = "";
+
+    foreach (Review review in Model)
+    {
+        <p>
+            @* Display the game title and genre just once *@
+            @if (currentTitle != review.GameName)
+            {
+                currentTitle = review.GameName;
+                <hr />
+                <div class="m-3">
+                    <h4>Title: @review.GameName</h4>
+                    <h5>Genre: @review.Genre</h5>
+                </div><hr />
+            }
+            <h5 class="m-3">Review</h5>
+        <p class="m-3"> @review.ReviewText</p>
+        <strong class="m-3">Reviewer:</strong>
+        @review.Reviewer.Name
+        <br />
+        <strong class="m-3">Review Date:</strong>
+
+        @review.ReviewDate.ToString("dddd, MMMM dd, yyyy")
+        <br />
+        <strong class="m-3">Rating:</strong>
+        @review.Rating / 5
+        </p>
+        <a asp-action="Comment" asp-route-reviewId="@review.ReviewId" class="btn-sm btn-secondary col-3 m-3">Add Comment</a>
+
+        if (review.Comments != null && review.Comments.Count != 0)
+        {
+            <h5 class="m-3">Comment@(review.Comments.Count > 1 ? "s" : "")</h5>
+
+            foreach (Comment comment in review.Comments)
+            {
+                <p>
+                <p class="m-3">@comment.CommentText</p>
+                <strong class="m-3">By:</strong>
+                @comment.Commenter.Name
+                <br />
+                <strong class="m-3">Date:</strong>
+                @comment.CommentDate.Date.ToString("dddd, MMMM dd, yyyy")
+                <br />
+                </p>
+            }
+        }
+    }
+}
