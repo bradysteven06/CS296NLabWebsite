@@ -42,7 +42,8 @@ namespace CS296N80sGameFansite
             services.AddTransient<IReviewRepository, ReviewRepository>();
 
             // enables dependency injection for following dbcontext objects
-            services.AddDbContext<GameListContext>(options => options.UseSqlServer(Configuration.GetConnectionString("GameListContext")));
+            //services.AddDbContext<GameListContext>(options => options.UseSqlServer(Configuration.GetConnectionString("GameListContext")));
+            services.AddDbContext<GameListContext>(options => options.UseSqlite(Configuration["ConnectionStrings:SQLiteConnection"]));
 
             services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<GameListContext>().AddDefaultTokenProviders();
         }
